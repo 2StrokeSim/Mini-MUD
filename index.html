@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Game screens sample</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+        }
+
+    </style>
+
+
+    <script src="../../PIXI/pixi.min.js"></script>
+
+	<script src="source/client/client.js"></script>
+	<script src="source/input/keyboard.js"></script>
+    
+    <script src="source/graphics/gui/gui.js"></script>
+
+    <script src="source/entity/entity.js"></script>
+
+</head>
+<body>
+    <script>
+    
+
+        
+           
+  /*                      const app = new PIXI.Application({
+    width: 800, height: 600, backgroundColor: 0x1099bb, resolution: window.devicePixelRatio || 1,
+});
+document.body.appendChild(app.view);*/
+
+
+
+const app = new PIXI.Application({ backgroundColor: 0x1099bb });
+document.body.appendChild(app.view);
+
+
+const container = new PIXI.Container();
+
+
+
+// Create a new texture
+const texture = PIXI.Texture.from('assets/bunny.png' );
+
+
+
+// Move container to the center
+container.x = 5;
+container.y = 5;
+
+// Center bunny sprite in local container coordinates
+container.pivot.x = container.width / 2;
+container.pivot.y = container.height / 2;
+
+
+var size = [1366, 768];
+var ratio = size[0] / size[1];
+function resize() {
+    if (window.innerWidth / window.innerHeight >= ratio) {
+        var w = window.innerHeight * ratio;
+        var h = window.innerHeight;
+    } else {
+        var w = window.innerWidth;
+        var h = window.innerWidth / ratio;
+    }
+    app.renderer.view.style.width = w + 'px';
+    app.renderer.view.style.height = h + 'px';
+}
+
+resize();
+window.onresize = resize;
+
+Gui.ConnectMenu();
+
+var map_input = new Keyboard.map_control(  );
+
+        map_input.bind_input();
+
+var entities = [];
+
+var entity_chain_start = new Link();
+var entity_chain_end = new Link();
+entity_chain_start.concat(entity_chain_end);
+var entity_count = 0;
+        
+    </script>
+
+</body>
+</html>
